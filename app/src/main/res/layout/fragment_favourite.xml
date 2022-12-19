@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dashboard.fragments.FavouriteFragment">
+<TextView
+    android:id="@+id/txtActivityTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="My favourite"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:textSize="@dimen/_14sdp"
+    android:textColor="@color/app_dark_theme"
+    android:fontFamily="@font/lato_bold"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 estates"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtActivityTitle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@color/app_dark_theme"
+        android:fontFamily="@font/lato_regular"
+        />
+    <ImageView
+        android:id="@+id/imgAddButton"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_add_favourite_in_fav"
+        />
+    <TextView
+        android:id="@+id/txtF1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your favourite page is "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgAddButton"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="#252B5C"
+        android:fontFamily="@font/lato_regular"
+        />
+    <TextView
+        android:id="@+id/txtF2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="empty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtF1"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/app_dark_theme"
+        android:fontFamily="@font/lato_regular"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

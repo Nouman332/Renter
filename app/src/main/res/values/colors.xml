@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#1F4C6B</color>
+    <color name="purple_500">#1F4C6B</color>
+    <color name="purple_700">#1F4C6B</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="app_button_color">#8BC83F</color>
+    <color name="app_dark_theme">#1F4C6B</color>
+    <color name="app_dark_hint">#A1A5C1</color>
+</resources>

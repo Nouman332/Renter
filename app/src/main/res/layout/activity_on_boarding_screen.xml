@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OnBoardingScreen">
+
+
+    <TextView
+        android:id="@+id/txtSkipBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/_15sdp"
+        android:fontFamily="@font/lato_regular"
+        android:text="Skip"
+        android:paddingHorizontal="@dimen/_18sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:background="@drawable/round_button_skip"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeTopView"
+        android:layout_alignParentBottom="true" />
+
+    <RelativeLayout
+        android:id="@+id/relativeTopView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon" />
+
+        <TextView
+            android:id="@+id/txtSearchExpert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txtDescription"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/lato_regular"
+            android:text="Search Expert"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+
+
+            />
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:fontFamily="@font/lato_regular"
+
+            android:text="You can find your Home Expert which is  suitable with your finances and timings."
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+
+
+            />
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/txtBtnNext"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/app_button_color"
+        android:fontFamily="@font/lato_regular"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:paddingHorizontal="10dp"
+        android:text="Next"
+        android:textColor="#ffffff"
+
+        />
+
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        android:id="@+id/dotsIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txtBtnNext"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        app:dotsColor="#A584B8"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="12dp"
+        app:dotsSpacing="4dp"
+        app:dotsWidthFactor="4.5"
+        app:progressMode="true"
+        app:selectedDotColor="@color/app_button_color" />
+</RelativeLayout>
