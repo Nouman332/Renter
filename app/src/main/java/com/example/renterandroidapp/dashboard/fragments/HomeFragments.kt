@@ -11,6 +11,9 @@ import com.example.renterandroidapp.R
 import com.example.renterandroidapp.adapter.DashboardAdapterCategory
 import com.example.renterandroidapp.adapter.DashboardAdapterFeature
 import com.example.renterandroidapp.model.DashboardModel
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 
 class HomeFragments : Fragment() {
@@ -39,17 +42,34 @@ class HomeFragments : Fragment() {
     }
 
     private fun setRecyclerViewByCategory() {
-        mList = ArrayList()
-        recyclerViewByCategory.adapter=DashboardAdapterCategory(mList,requireContext())
-        recyclerViewByCategory.layoutManager=
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+//        mList = ArrayList()
+//        dashboardAdapterCategory=DashboardAdapterCategory(mList,requireContext())
+//        recyclerViewByCategory.layoutManager=
+//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+//        recyclerViewByCategory.adapter=dashboardAdapterCategory
+//
+//        myRef.addValueEventListener(object: ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//
+//                val list: List<AddDataModel> = snapshot.children.map { dataSnapshot ->
+//                    dataSnapshot.getValue(AddDataModel::class.java)!!
+//                }
+//
+//                recyclerViewByCategory.adapter=ListingsAdapter(list,requireContext())
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//            }
+//        } )
+
     }
 
     private fun setRecyclerViewFeature() {
         mList = ArrayList()
-        recyclerViewFeature.adapter=DashboardAdapterFeature(mList,requireContext())
+        dashboardAdapterFeature=DashboardAdapterFeature(mList,requireContext())
         recyclerViewFeature.layoutManager=
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+        recyclerViewFeature.adapter=dashboardAdapterFeature
     }
 
     private fun initView(view: View) {

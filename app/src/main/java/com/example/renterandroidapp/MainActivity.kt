@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
+import com.example.renterandroidapp.dashboard.HomePage
 import com.example.renterandroidapp.sharedpreference.SharedPref
 
 class MainActivity : AppCompatActivity() {
@@ -26,20 +27,40 @@ class MainActivity : AppCompatActivity() {
 
         progressBar = findViewById(R.id.progressBar)
         Handler().postDelayed({
-            progressBar.visibility=View.GONE
-            findViewById<RelativeLayout>(R.id.relativeLetsStart).visibility= View.VISIBLE
-        },3000)
-        findViewById<RelativeLayout>(R.id.relativeLetsStart).setOnClickListener {
-            if(SharedPref.read("isAppFistTime",true)){
-                val intent = Intent(this, OnBoardingScreen::class.java)
-                startActivity(intent)
-                finish()
-            }else{
-              //  val intent = Intent(this, Login::class.java)
-                val intent = Intent(this, OnBoardingScreen::class.java)
-                startActivity(intent)
-                finish()
+            if(SharedPref.read("isAppFistTime",true))
+            {
+                progressBar.visibility= View.GONE
+                findViewById<RelativeLayout>(R.id.relativeLetsStart).visibility= View.VISIBLE
             }
+            else
+            {
+                if (SharedPref.read("isLoggedIn",true))
+                {
+                    progressBar.visibility= View.GONE
+                    val intent = Intent(this, HomePage::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                else
+                {
+                    progressBar.visibility= View.GONE
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+
+
+        }, 3000) // 3000 is the delayed time in milliseconds.
+
+        findViewById<RelativeLayout>(R.id.relativeLetsStart).setOnClickListener {
+
+            val intent = Intent(this, OnBoardingScreen::class.java)
+            startActivity(intent)
+            finish()
+
+
         }
     }
 }

@@ -47,7 +47,7 @@ class RegistrationForm : AppCompatActivity(),View.OnClickListener {
 
 
         firebaseauthentication = FirebaseAuth.getInstance()  //firebase variable initialize
-        myRef = database.getReference("ServiceProviderAccount")
+        myRef = database.getReference("Users").child("RenterAccount")
 
         currentDate =
             SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(Calendar.getInstance().time)

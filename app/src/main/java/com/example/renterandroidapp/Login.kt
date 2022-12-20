@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import com.example.renterandroidapp.dashboard.HomePage
+import com.example.renterandroidapp.sharedpreference.SharedPref
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -25,7 +27,7 @@ class Login : AppCompatActivity() {
         var email: TextInputLayout = findViewById(R.id.emailid)
         var password: TextInputLayout = findViewById(R.id.passwordName)
         firebaseauthentication = FirebaseAuth.getInstance()  ////firebase variable initialize
-        myRef = database.getReference("ServiceProviderAccount")
+        myRef = database.getReference("Users").child("RenterAccount")
 
         isAlreadyLogin()
         //button listner
@@ -40,9 +42,9 @@ class Login : AppCompatActivity() {
         txtForgetPassword = findViewById(R.id.txtForgetPassword)
         loginbutton.setOnClickListener {
 
-            startActivity(Intent(this@Login, HomePage::class.java))
+//            startActivity(Intent(this@Login, HomePage::class.java))
 
-   /*         var emailString = email.editText?.text.toString()// null safety
+            var emailString = email.editText?.text.toString()// null safety
             var passwordString = password.editText?.text.toString()
 
             firebaseauthentication.signInWithEmailAndPassword(emailString, passwordString)
@@ -54,10 +56,10 @@ class Login : AppCompatActivity() {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 var isApproved= snapshot.child("approved").value as Boolean
                                 if (isApproved){
+                                    SharedPref.write("isLoggedIn",true)
                                     val intent = Intent(this@Login, HomePage::class.java)
                                     startActivity(intent)
                                     finish()
-
                                 }
                                 else
                                 {
@@ -77,7 +79,7 @@ class Login : AppCompatActivity() {
 
                     } else
                         Toast.makeText(this@Login, it.exception?.message, Toast.LENGTH_LONG).show()
-                }*/
+                }
 
 
         }
@@ -112,13 +114,11 @@ class Login : AppCompatActivity() {
                         val intent = Intent(this@Login, HomePage::class.java)
                         startActivity(intent)
                         finish()
-
                     }
                     else
                     {
                         toast("Your Account is Not approved by Admin yet!! Please Wait...")
                         firebaseauthentication.signOut()
-
                     }
 
 
