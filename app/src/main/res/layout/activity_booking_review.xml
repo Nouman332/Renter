@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".FullScreenProduct">
+    tools:context=".booking.BookingReview">
 
     <ScrollView
         android:id="@+id/srcollView"
@@ -90,17 +90,17 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lato_bold"
-                            android:text="Sky Dandelions
-Apartment"
-
+                            android:text=""
                             android:textColor="#252B5C"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/city"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5sdp"
@@ -222,6 +222,7 @@ Apartment"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/duration"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
@@ -238,118 +239,80 @@ Apartment"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_weight=".1" />
 
-                <RelativeLayout
-                    android:id="@+id/relativeToPeriod"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_weight=".95"
-                    android:background="@drawable/round_profile_card_bg_selector">
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="@dimen/_10sdp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/lato_bold"
-                            android:src="@drawable/ic_calendar_icon_for_booking"
-                            android:textColor="#252B5C"
-                            android:textSize="@dimen/_12sdp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:fontFamily="@font/lato_regular"
-                            android:text="Check out"
-                            android:textColor="#53587A"
-                            android:textSize="@dimen/_10sdp" />
-
-                    </LinearLayout>
-                </RelativeLayout>
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/relativeNoteForOwner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearDateSelection">
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relativeNoteForOwner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="@dimen/_10sdp"-->
+<!--                android:layout_marginTop="@dimen/_10sdp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linearDateSelection">-->
 
-                <TextView
-                    android:id="@+id/txtNoteHeading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="Note for Owner"
-                    android:textColor="#1F4C6B"
-                    android:textSize="@dimen/_18sdp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/txtNoteHeading"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/_10sdp"-->
+<!--                    android:layout_marginTop="@dimen/_10sdp"-->
+<!--                    android:fontFamily="@font/lato_bold"-->
+<!--                    android:text="Note for Owner"-->
+<!--                    android:textColor="#1F4C6B"-->
+<!--                    android:textSize="@dimen/_18sdp" />-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_below="@+id/txtNoteHeading"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/round_profile_card_bg_selector"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_20sdp"
-                    android:paddingVertical="@dimen/_10sdp">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_60sdp"-->
+<!--                    android:layout_below="@+id/txtNoteHeading"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginTop="@dimen/_5sdp"-->
+<!--                    android:background="@drawable/round_profile_card_bg_selector"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingHorizontal="@dimen/_20sdp"-->
+<!--                    android:paddingVertical="@dimen/_10sdp">-->
 
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_toStartOf="@id/imgNoteDrawableIcon"
-                        android:background="@null"
-                        android:fontFamily="@font/lato_regular"
-                        android:hint="Please, clean before I go there"
-                        android:minHeight="48dp"
-                        android:textColor="#252B5C"
-                        android:textColorHint="#252B5C"
-                        android:textSize="@dimen/_12sdp" />
+<!--                    <EditText-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_20sdp"-->
+<!--                        android:layout_toStartOf="@id/imgNoteDrawableIcon"-->
+<!--                        android:background="@null"-->
+<!--                        android:fontFamily="@font/lato_regular"-->
+<!--                        android:hint="Please, clean before I go there"-->
+<!--                        android:minHeight="48dp"-->
+<!--                        android:textColor="#252B5C"-->
+<!--                        android:textColorHint="#252B5C"-->
+<!--                        android:textSize="@dimen/_12sdp" />-->
 
-                    <ImageView
-                        android:id="@+id/imgNoteDrawableIcon"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/lato_bold"
-                        android:src="@drawable/ic_messaging_icon"
-                        android:textColor="#252B5C"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-            </RelativeLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imgNoteDrawableIcon"-->
+<!--                        android:layout_width="@dimen/_20sdp"-->
+<!--                        android:layout_height="@dimen/_20sdp"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:fontFamily="@font/lato_bold"-->
+<!--                        android:src="@drawable/ic_messaging_icon"-->
+<!--                        android:textColor="#252B5C"-->
+<!--                        android:textSize="@dimen/_12sdp"-->
+<!--                        android:textStyle="bold" />-->
+<!--                </RelativeLayout>-->
+<!--            </RelativeLayout>-->
 
             <RelativeLayout
                 android:id="@+id/relativePaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeNoteForOwner">
+                app:layout_constraintTop_toBottomOf="@+id/linearDateSelection">
 
                 <TextView
                     android:id="@+id/txtPaymentMethod"
@@ -358,7 +321,7 @@ Apartment"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/lato_bold"
-                    android:text="Payment Method"
+                    android:text="Owner Detail"
                     android:textColor="#1F4C6B"
                     android:textSize="@dimen/_18sdp" />
 
@@ -374,20 +337,89 @@ Apartment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <ImageView
+                        <RelativeLayout
+                            android:id="@+id/relativeOwnerDetail"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_130sdp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_booking_wallet_green_bg" />
-
-                        <ImageView
-                            android:layout_width="@dimen/_120sdp"
-                            android:layout_height="@dimen/_130sdp"
-                            android:layout_alignParentEnd="true"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_safar___small" />
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
+                            android:layout_marginVertical="@dimen/_10sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/_30sdp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/uDname"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:text="Anderson"
+                                    android:textColor="#252B5C"
+                                    android:textSize="@dimen/_20sdp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/uDnumber"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="034666655"
+                                    android:textColor="#53587A"
+                                    android:textSize="@dimen/_15sdp" />
+
+                                <TextView
+                                    android:id="@+id/uDemail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="anderson@gmail.com"
+                                    android:textColor="#53587A"
+                                    android:textSize="@dimen/_15sdp" />
+
+                                <TextView
+                                    android:id="@+id/uDCnic"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="Safari Villas"
+                                    android:textColor="#53587A"
+                                    android:textSize="@dimen/_15sdp" />
+
+                                <TextView
+                                    android:id="@+id/uDtype"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="Real Estate Agent"
+                                    android:textColor="#53587A"
+                                    android:textSize="@dimen/_15sdp" />
+
+                                <TextView
+                                    android:id="@+id/uDjoinDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="Real Estate Agent"
+                                    android:textColor="#53587A"
+                                    android:textSize="@dimen/_15sdp" />
+
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>

@@ -11,7 +11,7 @@
         android:id="@+id/srcollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtBuy"
+        app:layout_constraintBottom_toTopOf="@+id/txtBook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,48 +32,27 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/propertyImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_350sdp"
-                        android:layout_centerHorizontal="true"
-
-                        android:scaleType="fitXY"
-                        android:src="@drawable/details_sample_image" />
-
-                    <ImageView
-                        android:id="@+id/imgFavourite"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_favourite_details" />
+                    android:layout_height="@dimen/_200sdp">
 
 
                     <ImageView
                         android:id="@+id/imgBack"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_back_details" />
 
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/imgShare"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_toStartOf="@+id/imgFavourite"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_share_detail" />
 
 
                 </RelativeLayout>
@@ -93,14 +72,14 @@
 
                 <TextView
                     android:id="@+id/propertyName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_100sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/lato_bold"
                     android:text="Wings Tower"
                     android:textColor="#1F4C6B"
-                    android:textSize="@dimen/_20sdp"
+                    android:textSize="@dimen/_13sdp"
 
 
                     />
@@ -124,105 +103,147 @@
                     />
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayoutType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeHostelName">
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/linearLayoutType"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="@dimen/_20sdp"-->
+            <!--                android:layout_marginTop="@dimen/_10sdp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/relativeHostelName">-->
 
-                <TextView
-                    android:id="@+id/txtAllCat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_active_cate"
-                    android:fontFamily="@font/lato_regular"
-                    android:paddingHorizontal="@dimen/_20sdp"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:text="Rent"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp" />
+            <!--                <TextView-->
+            <!--                    android:id="@+id/txtAllCat"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:background="@drawable/round_active_cate"-->
+            <!--                    android:fontFamily="@font/lato_regular"-->
+            <!--                    android:paddingHorizontal="@dimen/_20sdp"-->
+            <!--                    android:paddingVertical="@dimen/_10sdp"-->
+            <!--                    android:text="Rent"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="@dimen/_12sdp" />-->
 
-                <TextView
-                    android:id="@+id/txtHomeCat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:background="@drawable/round_inactive_cate"
-                    android:fontFamily="@font/lato_regular"
-                    android:paddingHorizontal="@dimen/_15sdp"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:text="Buy"
-                    android:textColor="@color/app_dark_theme"
-                    android:textSize="@dimen/_12sdp"
-                    android:visibility="invisible" />
-            </LinearLayout>
+            <!--                <TextView-->
+            <!--                    android:id="@+id/txtHomeCat"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginHorizontal="@dimen/_10sdp"-->
+            <!--                    android:background="@drawable/round_inactive_cate"-->
+            <!--                    android:fontFamily="@font/lato_regular"-->
+            <!--                    android:paddingHorizontal="@dimen/_15sdp"-->
+            <!--                    android:paddingVertical="@dimen/_10sdp"-->
+            <!--                    android:text="Buy"-->
+            <!--                    android:textColor="@color/app_dark_theme"-->
+            <!--                    android:textSize="@dimen/_12sdp"-->
+            <!--                    android:visibility="invisible" />-->
+            <!--            </LinearLayout>-->
 
             <View
                 android:id="@+id/viewBar"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:background="#ECEDF3"
+                app:layout_constraintBottom_toTopOf="@+id/relativeOwnerDetails"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutType" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeHostelName" />
 
             <RelativeLayout
                 android:id="@+id/relativeOwnerDetails"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_80sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_30sdp"
                 android:background="@drawable/round_profile_card_bg_selector"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewBar">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardImageOwner"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    app:cardCornerRadius="@dimen/_22sdp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/sample_profile_image" />
-
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/relativeOwnerDetail"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_30sdp"
-                    android:layout_toEndOf="@+id/cardImageOwner"
-                    android:orientation="vertical">
+                    android:layout_alignParentStart="true"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_bold"
-                        android:text="Anderson"
-                        android:textColor="#252B5C"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_regular"
-                        android:text="Real Estate Agent"
-                        android:textColor="#53587A"
-                        android:textSize="@dimen/_10sdp" />
+                        <TextView
+                            android:id="@+id/uDname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato_bold"
+                            android:text="Anderson"
+                            android:textColor="#252B5C"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="bold" />
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/uDnumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/lato_regular"
+                            android:text="034666655"
+                            android:textColor="#53587A"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <TextView
+                            android:id="@+id/uDemail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/lato_regular"
+                            android:text="anderson@gmail.com"
+                            android:textColor="#53587A"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <TextView
+                            android:id="@+id/uDCnic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/lato_regular"
+                            android:text="Safari Villas"
+                            android:textColor="#53587A"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <TextView
+                            android:id="@+id/uDtype"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/lato_regular"
+                            android:text="Real Estate Agent"
+                            android:textColor="#53587A"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <TextView
+                            android:id="@+id/uDjoinDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/lato_regular"
+                            android:text="Real Estate Agent"
+                            android:textColor="#53587A"
+                            android:textSize="@dimen/_15sdp" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
             </RelativeLayout>
 
             <TextView
@@ -272,41 +293,24 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_regular"
                         android:text="St. Cikoko Timur, Kec. Pancoran, Jakarta Selatan, Indonesia 12770"
                         android:textColor="#53587A"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        />
 
                 </LinearLayout>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/relativeMapMainLayout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_40sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLocationAddress">
 
-                <ImageView
-                    android:id="@+id/imgMap"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_190sdp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground"
-                    android:src="@drawable/map_layout" />
-            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <TextView
-        android:id="@+id/txtBuy"
+        android:id="@+id/txtBook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

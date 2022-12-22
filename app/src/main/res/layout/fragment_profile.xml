@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".dashboard.fragments.ProfileFragment"
     >
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
         android:elevation="@dimen/_10sdp"
         >
 
@@ -33,25 +32,65 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/btnSettings"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <TextView
+                android:id="@+id/btnComplain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/setting_btn"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="@dimen/_10sdp"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center"
+                android:textColor="@color/app_dark_theme"
+                android:text="Complain to Admin?"
+                android:textSize="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/linearEmail" />
+
+            <TextView
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_rectangle_6"
+                android:elevation="@dimen/_10sdp"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center"
+                android:shadowColor="@color/app_dark_hint"
+                android:text="Edit Profile"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/ic_rectangle_6"
+                android:elevation="@dimen/_10sdp"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center"
+                android:shadowColor="@color/app_dark_hint"
+                android:text="Log Out"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="@dimen/_90sdp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/sample_profile_image"
+                android:src="@drawable/ellipse"
                 app:civ_border_color="#2E7D32"
                 app:civ_border_width="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +111,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_20sdp"
@@ -79,7 +119,8 @@
                     android:background="@null"
                     android:drawableEnd="@drawable/ic_profile_start"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:text="Muhammad Bilal"
+                    android:text=""
+                    android:clickable="false"
                     android:maxLength="50"
                     android:maxLines="1"
                     android:textSize="@dimen/_12sdp" />
@@ -98,6 +139,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/userPhone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_20sdp"
@@ -105,7 +147,8 @@
                     android:background="@null"
                     android:drawableEnd="@drawable/ic_call_icon"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:text="+92 315 5555555"
+                    android:text=""
+                    android:clickable="false"
                     android:maxLength="50"
                     android:maxLines="1"
                     android:textSize="@dimen/_12sdp" />
@@ -126,6 +169,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/userEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_20sdp"
@@ -133,8 +177,9 @@
                     android:background="@null"
                     android:drawableEnd="@drawable/ic_email_icon"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:text="muhammadbilal@gmail.com"
+                    android:text=""
                     android:maxLength="50"
+                    android:clickable="false"
                     android:maxLines="1"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
@@ -144,6 +189,25 @@
 
 
     </androidx.cardview.widget.CardView>
+    <ProgressBar
+        android:id="@+id/prog"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/custom_progress"
+        android:indeterminateDuration="@android:integer/config_longAnimTime"
+        android:visibility="invisible"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+    </ProgressBar>
+
 
 
 

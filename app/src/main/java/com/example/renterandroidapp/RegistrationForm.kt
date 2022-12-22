@@ -217,14 +217,16 @@ class RegistrationForm : AppCompatActivity(),View.OnClickListener {
                             email,
                             phone,
                             "",
-                            false,
+                            "false",
                             joinDate = currentDate,
                             "",
                             "",
                             "",
                             "",
                             gender = "",
-                            onlineStatus = false
+                            "false",
+                            accountType = "RenterAccount",
+                            "false"
                         )
                     ).addOnCompleteListener {
                         if (it.isSuccessful) {

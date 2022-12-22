@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.renterandroidapp.FullScreenProduct
 import com.example.renterandroidapp.R
+import com.example.renterandroidapp.model.AddDataModel
 import com.example.renterandroidapp.model.DashboardModel
 
 
-class DashboardAdapterFeature(private val mList: List<DashboardModel>,private var context: Context) : Adapter<DashboardAdapterFeature.ViewHolder>() {
+class DashboardAdapterTour(private val mList: ArrayList<AddDataModel>, private var context: Context) : Adapter<DashboardAdapterTour.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,6 +23,21 @@ class DashboardAdapterFeature(private val mList: List<DashboardModel>,private va
             .inflate(R.layout.dashboard_recyclerview_feature_item, parent, false)
 
         return ViewHolder(view)
+    }
+    fun updateData(newList:ArrayList<AddDataModel>) {
+
+        clearItems()
+        val newSize = newList.size
+        if (newList != null)
+            this.mList.addAll(newList)
+        notifyItemRangeInserted(0, newSize)
+
+
+    }
+    fun clearItems() {
+        val oldSize = this.mList.size
+        this.mList.clear()
+        notifyItemRangeRemoved(0, oldSize)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

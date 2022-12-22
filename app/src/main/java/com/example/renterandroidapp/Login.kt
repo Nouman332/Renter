@@ -3,6 +3,9 @@ package com.example.renterandroidapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.renterandroidapp.dashboard.HomePage
@@ -18,18 +21,21 @@ class Login : AppCompatActivity() {
     lateinit var txtForgetPassword: TextView
     lateinit var myRef: DatabaseReference
     val database = FirebaseDatabase.getInstance()
+    lateinit var email: TextInputLayout
+    lateinit var password: TextInputLayout
+    lateinit var progressBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_login)
-
-        var email: TextInputLayout = findViewById(R.id.emailid)
-        var password: TextInputLayout = findViewById(R.id.passwordName)
+        progressBar=findViewById(R.id.progress)
+         email = findViewById(R.id.emailid)
+         password= findViewById(R.id.passwordName)
         firebaseauthentication = FirebaseAuth.getInstance()  ////firebase variable initialize
         myRef = database.getReference("Users").child("RenterAccount")
 
-        isAlreadyLogin()
+//        isAlreadyLogin()
         //button listner
         var registerbutton: TextView = findViewById(R.id.registerbtn)
         registerbutton.setOnClickListener {
@@ -43,43 +49,56 @@ class Login : AppCompatActivity() {
         loginbutton.setOnClickListener {
 
 //            startActivity(Intent(this@Login, HomePage::class.java))
+            progressBar.visibility= View.VISIBLE
+            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+            if (isValid()){
+                val email : String  = email.editText?.text.toString()
+                val pass : String  = password.editText?.text.toString()
+                    firebaseauthentication.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
+                        if (it.isSuccessful)
+                        {
+                            var userid= firebaseauthentication.currentUser?.uid.toString()
+                            myRef=database.getReference("Users").child("RenterAccount").child(userid)
+                            myRef.addValueEventListener(object: ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val isApproved: String = snapshot.child("approved").getValue(String::class.java).toString()
+                                    if (isApproved=="true"){
+                                        SharedPref.write("isLoggedIn",true)
+                                        val intent = Intent(this@Login, HomePage::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                        progressBar.visibility= View.INVISIBLE
+                                        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                                    }
+                                    else{
+                                        progressBar.visibility= View.INVISIBLE
+                                        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                                        toast("Your Account is Not yet approved by Admin...")
 
-            var emailString = email.editText?.text.toString()// null safety
-            var passwordString = password.editText?.text.toString()
-
-            firebaseauthentication.signInWithEmailAndPassword(emailString, passwordString)
-                .addOnCompleteListener(this) {
-                    if (it.isSuccessful)
-                    {
-                        myRef.child(firebaseauthentication.currentUser?.uid.toString()).addValueEventListener(object :
-                            ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                var isApproved= snapshot.child("approved").value as Boolean
-                                if (isApproved){
-                                    SharedPref.write("isLoggedIn",true)
-                                    val intent = Intent(this@Login, HomePage::class.java)
-                                    startActivity(intent)
-                                    finish()
+                                    }
                                 }
-                                else
-                                {
-                                    toast("Your Account is Not approved by Admin yet!! Please Wait...")
-                                    firebaseauthentication.signOut()
-
+                                override fun onCancelled(error: DatabaseError) {
+                                    toast(error.message.toString())
+                                    progressBar.visibility= View.INVISIBLE
+                                    window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                                 }
+                            } )
+
+                        }
+                        else
+                        {
+                            progressBar.visibility= View.INVISIBLE
+                            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                            toast(it.exception?.message.toString())
+
+                        }
+                    }
 
 
-                            }
-
-                            override fun onCancelled(error: DatabaseError) {
-
-                            }
-
-                        })
-
-                    } else
-                        Toast.makeText(this@Login, it.exception?.message, Toast.LENGTH_LONG).show()
-                }
+            }
+            else
+                progressBar.visibility= View.INVISIBLE
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
 
         }
@@ -87,7 +106,6 @@ class Login : AppCompatActivity() {
 
             if (email.editText?.text.toString().isEmpty()) {
                 email.error = "Email is required.";
-                toast("Email jo bhi")
 
             } else {
                 firebaseauthentication.sendPasswordResetEmail(email.editText?.text.toString())
@@ -132,6 +150,20 @@ class Login : AppCompatActivity() {
 
 
         }
+    }
+    fun isValid() : Boolean {
+        if (email.editText?.text.toString().isEmpty()) {
+            email.error = "Email is required."
+            return false
+        }
+        if (password.editText?.text.toString().isEmpty()) {
+            password.error = "Password is required."
+
+            return false
+        }
+
+        return true
+
     }
 }
 
