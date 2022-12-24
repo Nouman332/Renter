@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             }
             else
             {
-                if (SharedPref.read("isLoggedIn",true))
+                if (SharedPref.read("isLoggedInRenter",false))
                 {
                     progressBar.visibility= View.GONE
                     val intent = Intent(this, HomePage::class.java)

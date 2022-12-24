@@ -31,6 +31,7 @@ class ProfileFragment : Fragment() {
     lateinit var  userPhone : String
     lateinit var editUser: TextView
     private lateinit var logOutUser: TextView
+    private lateinit var userNameMian: TextView
     private lateinit var complain: TextView
 
     override fun onCreateView(
@@ -60,6 +61,7 @@ class ProfileFragment : Fragment() {
                 name.setText(userName)
                 phone.setText(userPhone)
                 email.setText(userEmail)
+                userNameMian.text=userName.toString()
                 progressBar.visibility= View.INVISIBLE
             }
             override fun onCancelled(error: DatabaseError) {
@@ -76,6 +78,8 @@ class ProfileFragment : Fragment() {
         editUser=view.findViewById(R.id.btnEdit)
         logOutUser=view.findViewById(R.id.btnLogout)
         complain=view.findViewById(R.id.btnComplain)
+        userNameMian=view.findViewById(R.id.UserNameMain)
+
         userid= firebaseAuthentication.currentUser?.uid.toString()
         name.isFocusable = false
         name.isClickable = false

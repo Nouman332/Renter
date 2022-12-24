@@ -54,7 +54,7 @@ class Login : AppCompatActivity() {
             if (isValid()){
                 val email : String  = email.editText?.text.toString()
                 val pass : String  = password.editText?.text.toString()
-                    firebaseauthentication.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
+                firebaseauthentication.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
                         if (it.isSuccessful)
                         {
                             var userid= firebaseauthentication.currentUser?.uid.toString()
@@ -63,7 +63,7 @@ class Login : AppCompatActivity() {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val isApproved: String = snapshot.child("approved").getValue(String::class.java).toString()
                                     if (isApproved=="true"){
-                                        SharedPref.write("isLoggedIn",true)
+                                        SharedPref.write("isLoggedInRenter",true)
                                         val intent = Intent(this@Login, HomePage::class.java)
                                         startActivity(intent)
                                         finish()

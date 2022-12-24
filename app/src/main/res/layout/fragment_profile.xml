@@ -33,6 +33,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/UserNameMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Profile"
+                android:textColor="#252B5C"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
                 android:id="@+id/btnComplain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/ic_rectangle_6"
                 android:elevation="@dimen/_10sdp"
                 android:fontFamily="@font/lato_bold"
@@ -63,9 +77,9 @@
                 android:shadowColor="@color/app_dark_hint"
                 android:text="Edit Profile"
                 android:textSize="@dimen/_15sdp"
-                app:layout_constraintBottom_toTopOf="@+id/btnLogout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnComplain" />
 
             <TextView
                 android:id="@+id/btnLogout"
@@ -73,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
-                android:layout_marginBottom="50dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/ic_rectangle_6"
                 android:elevation="@dimen/_10sdp"
                 android:fontFamily="@font/lato_bold"
@@ -81,34 +95,33 @@
                 android:shadowColor="@color/app_dark_hint"
                 android:text="Log Out"
                 android:textSize="@dimen/_15sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
-                android:layout_width="@dimen/_90sdp"
-                android:layout_height="@dimen/_90sdp"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/ellipse"
-                app:civ_border_color="#2E7D32"
-                app:civ_border_width="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/btnEdit" />
+
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/profile_image"-->
+<!--                android:layout_width="@dimen/_90sdp"-->
+<!--                android:layout_height="@dimen/_90sdp"-->
+<!--                android:layout_marginTop="50dp"-->
+<!--                android:src="@drawable/ellipse"-->
+<!--                app:civ_border_color="#2E7D32"-->
+<!--                app:civ_border_width="2dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView2" />-->
 
             <LinearLayout
                 android:id="@+id/linearName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/round_search_view"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"
 
-                >
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/UserNameMain">
 
                 <EditText
                     android:id="@+id/userName"
@@ -117,12 +130,12 @@
                     android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginVertical="@dimen/_10sdp"
                     android:background="@null"
+                    android:clickable="false"
                     android:drawableEnd="@drawable/ic_profile_start"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:text=""
-                    android:clickable="false"
                     android:maxLength="50"
                     android:maxLines="1"
+                    android:text=""
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
             <LinearLayout

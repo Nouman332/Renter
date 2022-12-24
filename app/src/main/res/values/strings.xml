@@ -2,7 +2,7 @@
     <string name="app_name">RenterAndroidApp</string>
     <string name="let_s_sign_in">Let\'s <b><font color="#1F4C6B">Sign In</font></b></string>
     <string name="create_your_account">Create Your <b><font color="#1F4C6B">account</font></b></string>
-    <string name="dashboard_heading">Hey, <b><font color="#1F4C6B">Jonathan!</font></b> </string>
+    <string name="dashboard_heading">Hey </string>
     <string name="dashboard_heading2"> Let\'s start exploring  </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
