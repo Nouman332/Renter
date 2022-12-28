@@ -5,13 +5,26 @@
       <map>
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/drawable-v24/custom_progress.xml" value="0.2065" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/drawable-v24/ic_rectangle_6.xml" value="0.2065" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/drawable/custom_border.xml" value="0.215" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/drawable/ic_location_icon.xml" value="0.215" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/drawable/round_corner.xml" value="0.215" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_booking_review.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_chat.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_chat_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_full_screen_product.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_home_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/activity_tour_full.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/chat_contact_row.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/custom_dialog_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/custom_tour_dialog.xml" value="0.253125" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/dashboard_recyclerview_feature_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/dashboard_recyclerview_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/fragment_favourite.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/fragment_home_fragments.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/layout/mybookings_detail.xml" value="0.253125" />
+        <entry key="..\:/Users/92304/AndroidStudioProjects/Renter/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

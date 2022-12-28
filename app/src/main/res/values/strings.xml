@@ -8,5 +8,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="MAPS_API_KEY">AIzaSyA2jsUQGsVe2FkZZn13n7bB-UpvDXnlg68</string>
+    <string name="reply_on_whatsapp">Reply on WhatsApp</string>
+    <string name="reply">Reply</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_ur_msg"><i>Type a message...</i></string>
+    <string name="deleted_by">Deleted by Sender</string>
+    <string name="from_sender">SENDER</string>
+    <string name="from_receiver">RECEIVER</string>
+    <string name="not_chat_found">No new messages !</string>
+    <string name="from_owner">Owner</string>
+    <string name="from_renter">Renter</string>
 
 </resources>

@@ -2,48 +2,44 @@ package com.example.renterandroidapp
 
 import android.content.Intent
 import android.graphics.Color
-import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
+import android.os.Bundle
 import com.example.renterandroidapp.adapter.ImageAdapter
 import com.example.renterandroidapp.booking.BookingReview
-import com.example.renterandroidapp.chat.ChatActivity
-import com.example.renterandroidapp.chat.ChatMainActivity
+import com.example.renterandroidapp.dashboard.HomePage
+import com.example.renterandroidapp.databinding.ActivityBookingReviewBinding
 import com.example.renterandroidapp.databinding.ActivityFullScreenProductBinding
+import com.example.renterandroidapp.databinding.ActivityTourFullBinding
+import com.example.renterandroidapp.model.AddBooking
 import com.example.renterandroidapp.model.AddDataModel
+import com.example.renterandroidapp.model.TourAddModel
 import com.example.renterandroidapp.model.Urls
+import com.example.renterandroidapp.sharedpreference.TourDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class FullScreenProduct : AppCompatActivity() {
-    var addId: String =""
-    var uid: String =""
-    private lateinit var binding : ActivityFullScreenProductBinding
+class TourFullActivity : AppCompatActivity() {
+    lateinit var binding: ActivityTourFullBinding
+    var addId: String=""
+    var uid: String=""
     lateinit var firebaseauthentication: FirebaseAuth
     val database = FirebaseDatabase.getInstance()
     lateinit var myRef: DatabaseReference
-    var addDetail: AddDataModel = AddDataModel()
-    var viewPager: ViewPager? = null
-    var adapter: ImageAdapter? = null
-    var  urlList: ArrayList<Urls> = ArrayList()
+    var tourAddModel: TourAddModel = TourAddModel()
     var status: String=""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        binding = ActivityFullScreenProductBinding.inflate(layoutInflater)
+        binding = ActivityTourFullBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firebaseauthentication = FirebaseAuth.getInstance()  //firebase variable initialize
         myRef = database.reference
         val intent = intent
         addId=intent.getStringExtra("addId").toString()
         uid=intent.getStringExtra("uid").toString()
-
         apiCall()
 
-        myRef=database.reference.child("Bookings").child(addId)
+        myRef=database.reference.child("TourBookings").child(addId)
         myRef.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
@@ -77,71 +73,72 @@ class FullScreenProduct : AppCompatActivity() {
 
 
 
+
         binding.txtBook.setOnClickListener {
 
-            startActivity(Intent(this@FullScreenProduct,BookingReview::class.java).putExtra("uid",uid).putExtra("addId",addId))
+            TourDialogFragment().show(supportFragmentManager,"tour")
 
         }
-        binding.txtMesg.setOnClickListener {
-            if (addID == "") {
-                toast("Owner details is not available! you can't chat now. Please try later.")
-            } else {
-                startActivity(
-                    Intent(
-                        this@FullScreenProduct,
-                        ChatActivity::class.java
-                    ).putExtra("chatUID", uid).putExtra("addID",addID)
-                )
-            }
-        }
-
-
+    }
+    fun cancel(){
+        startActivity(Intent(this, BookingReview::class.java))
+        finish()
 
 
     }
-    var addID = ""
+    fun confirmBooking(){
+        var renterId: String=firebaseauthentication.currentUser?.uid.toString()
+        myRef=database.reference.child("TourBookings").child(addId)
+        myRef.setValue(
+            AddBooking(
+                addId,
+                uid,
+                renterId,
+                "Requested"
+            )
+        ).addOnCompleteListener{
+            if (it.isSuccessful)
+            {
+
+                startActivity(Intent(this@TourFullActivity, TourFullActivity::class.java))
+                finish()
+            }
+            else
+                toast("Some error occurred Booking not Confirmed")
+
+        }
+
+    }
+
+
     fun apiCall() {
 
-        myRef.child("OwnerAdd").child(uid.toString()).child(addId).addValueEventListener(object :
+        myRef.child("TourAdd").child(uid.toString()).child(addId).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists())
                 {
-                    addDetail = dataSnapshot.getValue(AddDataModel::class.java)!!
-                    binding.propertyName.text = addDetail.propertyType.toString()
-                    binding.txtPrice.text = addDetail.Price.toString()
-                    binding.location.text = addDetail.Address.toString()
-                    addID = addDetail.uid.toString()
-                    myRef = database.getReference("Users").child("OwnerAccount").child(addDetail.uid.toString())
+                    tourAddModel = dataSnapshot.getValue(TourAddModel::class.java)!!
+                    binding.propertyName.text = tourAddModel.description.toString()
+                    binding.txtPrice.text = tourAddModel.Price.toString()
+                    binding.location.text = tourAddModel.Address.toString()
+                    binding.TourDays.text=   "Tour Days         :"+tourAddModel.EventDays
+                    binding.TourType.text=   "Event For         :" + tourAddModel.tourType
+                    binding.TourPlace.text=  "Tour At          :" + tourAddModel.Address
+                    binding.TourPrice.text=  "Per Person Price :"+ tourAddModel.Price
+                    binding.paymentType.text="Payment Type is :" + tourAddModel.paymentType
+                    binding.TourDescription.text=tourAddModel.description
+
+                    myRef = database.getReference("Users").child("TourOrganizerAccount").child(tourAddModel.uid.toString())
                     myRef.addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if (snapshot.exists()){
-
                                 binding.uDname.text=snapshot.child("name").value.toString()
                                 binding.uDnumber.text=snapshot.child("phone").value.toString()
                                 binding.uDemail.text=snapshot.child("email").value.toString()
                                 binding.uDCnic.text=snapshot.child("cnic").value.toString()
                                 binding.uDtype.text=snapshot.child("accountType").value.toString()
-                                binding.uDjoinDate.text=snapshot.child("joinDate").value.toString()
 
-                                myRef = database.getReference("photos").child(addId) //userId
-                                myRef.addValueEventListener(object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if (snapshot.exists()){
-                                            for (snapShot1  in snapshot.children ){
-                                                val urls : Urls? = snapShot1.getValue(Urls::class.java)
-                                                urls?.let { urlList.add(it) }
-                                            }
-                                            adapter=ImageAdapter(this@FullScreenProduct,urlList)
-                                            binding.viewPager.adapter= adapter
-
-                                        }
-
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                    }
-                                })
                             }
                         }
                         override fun onCancelled(error: DatabaseError) {
@@ -160,4 +157,5 @@ class FullScreenProduct : AppCompatActivity() {
 
 
     }
+
 }

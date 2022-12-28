@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 
 import com.example.renterandroidapp.FullScreenProduct
 import com.example.renterandroidapp.R
+import com.example.renterandroidapp.dashboard.HomePage
 import com.example.renterandroidapp.model.AddDataModel
 import com.example.renterandroidapp.model.MainImage
 import com.google.firebase.FirebaseError
@@ -24,13 +25,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class DashboardAdapterCategory( val custinfos: ArrayList<AddDataModel>,private var context:Context) : Adapter<DashboardAdapterCategory.ViewHolder>(),Filterable {
+class DashboardAdapterCategory(val custinfos: ArrayList<AddDataModel>,private var context:Context) : Adapter<DashboardAdapterCategory.ViewHolder>(),Filterable {
 
     val database = FirebaseDatabase.getInstance()
     var myRef: DatabaseReference =database.reference
     val bundle : Bundle = Bundle()
     var MainImage : MainImage= MainImage("","")
-    var custinfosF: ArrayList<AddDataModel> = ArrayList()
+    var custinfosF: ArrayList<AddDataModel> = custinfos
+
+    var status : String =""
 
 
 
@@ -43,7 +46,6 @@ class DashboardAdapterCategory( val custinfos: ArrayList<AddDataModel>,private v
 
     fun updateData(newList:ArrayList<AddDataModel>) {
 
-        clearItems()
         val newSize = newList.size
         if (newList != null)
             this.custinfos.addAll(newList)
@@ -59,7 +61,7 @@ class DashboardAdapterCategory( val custinfos: ArrayList<AddDataModel>,private v
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        this.custinfosF=custinfos
+//        this.custinfosF=custinfos
         val dashboardModel : AddDataModel=custinfosF[position]
 
         myRef.child("photos").child(dashboardModel.addPhotosUrl.toString()).addListenerForSingleValueEvent(object :
@@ -111,7 +113,7 @@ class DashboardAdapterCategory( val custinfos: ArrayList<AddDataModel>,private v
     }
 
     override fun getItemCount(): Int {
-        return custinfos.size
+        return custinfosF.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -134,14 +136,15 @@ class DashboardAdapterCategory( val custinfos: ArrayList<AddDataModel>,private v
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.city!!.toLowerCase()
-                                .contains(charS.lowercase(Locale.getDefault())) || row.area!!
+                        if (row.city!!
+                                .contains(charSequence) || row.area!!
                                 .contains(charSequence) || row.description!!.contains(charSequence)
                         ) {
                             filteredList.add(row)
                         }
                     }
                     custinfosF = filteredList as ArrayList<AddDataModel>
+                    notifyDataSetChanged()
                 }
                 val filterResults = FilterResults()
                 filterResults.values = custinfosF

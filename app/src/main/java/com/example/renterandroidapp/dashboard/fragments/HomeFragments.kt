@@ -10,29 +10,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.LinearLayout.HORIZONTAL
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.example.renterandroidapp.R
 import com.example.renterandroidapp.adapter.DashboardAdapterCategory
 import com.example.renterandroidapp.adapter.DashboardAdapterTour
 import com.example.renterandroidapp.model.AddDataModel
+import com.example.renterandroidapp.model.TourAddModel
 import com.google.firebase.database.*
 
 
 class HomeFragments : Fragment() {
 
-    lateinit var recyclerViewByCategory : RecyclerView
+    lateinit var recyclerViewAdds : RecyclerView
     lateinit var recyclerViewFeature : RecyclerView
 
     lateinit var dashboardAdapterCategory: DashboardAdapterCategory
     lateinit var dashboardAdapterTour: DashboardAdapterTour
     lateinit var adapterCategory: DashboardAdapterCategory
     private lateinit var mList: ArrayList<AddDataModel>
+    private lateinit var list: ArrayList<TourAddModel>
     lateinit var myRef: DatabaseReference
+    lateinit var myRef2: DatabaseReference
     val database = FirebaseDatabase.getInstance()
     lateinit var search: EditText
 
@@ -41,6 +42,7 @@ class HomeFragments : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         myRef=database.getReference("OwnerAdd")
         search=view.findViewById(R.id.search)
+        recyclerViewAdds = view.findViewById(R.id.recyclerViewByCategory)
         initView(view)
         setRecyclerViewByCategory()
         setRecyclerViewFeature()
@@ -63,15 +65,23 @@ class HomeFragments : Fragment() {
     }
 
     private fun setRecyclerViewByCategory() {
+        mList = ArrayList()
+        recyclerViewAdds.layoutManager=
+            NpaLinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL,false)
+
 
         myRef.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (snapShot1 : DataSnapshot  in snapshot.children ) {
-                    mList = snapShot1.children.map { dataSnapshot ->
-                        dataSnapshot.getValue(AddDataModel::class.java)!!
-                    } as ArrayList<AddDataModel>
+                    snapShot1.children.map { dataSnapshot ->
+//                        dataSnapshot.getValue(AddDataModel::class.java)!!
+                        val addDataModel : AddDataModel = dataSnapshot.getValue(AddDataModel::class.java)!!
+                        mList.add(addDataModel)
+                    } as ArrayList<*>
                 }
-                dashboardAdapterCategory.updateData(mList)
+                dashboardAdapterCategory=DashboardAdapterCategory(mList,requireContext())
+                recyclerViewAdds.adapter=dashboardAdapterCategory
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -81,28 +91,45 @@ class HomeFragments : Fragment() {
     }
     fun updateRecyclerListWithFilter(data: String?) {
         if (dashboardAdapterCategory != null) {
-            dashboardAdapterCategory.getFilter()?.filter(data)
+            dashboardAdapterCategory.filter?.filter(data)
             dashboardAdapterCategory.notifyDataSetChanged()
         }
     }
 
     private fun setRecyclerViewFeature() {
-        mList = ArrayList()
-        dashboardAdapterTour=DashboardAdapterTour(mList,requireContext())
-        recyclerViewFeature.layoutManager=
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-        recyclerViewFeature.adapter=dashboardAdapterTour
+        list.clear()
+        myRef2=database.reference.child("TourAdd")
+        myRef2.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (snapShot1 : DataSnapshot  in snapshot.children ) {
+                    snapShot1.children.map { dataSnapshot ->
+//                        dataSnapshot.getValue(AddDataModel::class.java)!!
+                        val tour : TourAddModel = dataSnapshot.getValue(TourAddModel::class.java)!!
+                        list.add(tour)
+                    } as ArrayList<*>
+                }
+                dashboardAdapterTour=DashboardAdapterTour(list,requireContext())
+                recyclerViewFeature.adapter=dashboardAdapterTour
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        } )
+
     }
 
     private fun initView(view: View) {
-        recyclerViewByCategory = view.findViewById(R.id.recyclerViewByCategory)
+
+
         recyclerViewFeature = view.findViewById(R.id.recyclerViewFeature)
-        mList = ArrayList()
-        dashboardAdapterCategory=DashboardAdapterCategory(mList,requireContext())
-        recyclerViewByCategory.layoutManager=
-            NpaLinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL,false)
-        recyclerViewByCategory.adapter=dashboardAdapterCategory
+        list = ArrayList()
+        recyclerViewFeature.layoutManager=
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+
+
+
     }
+
     private class NpaLinearLayoutManager : LinearLayoutManager {
         constructor(context: Context?) : super(context) {}
         constructor(context: Context?, orientation: Int, reverseLayout: Boolean) : super(

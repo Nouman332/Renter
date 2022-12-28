@@ -10,4 +10,15 @@
     <color name="app_button_color">#8BC83F</color>
     <color name="app_dark_theme">#1F4C6B</color>
     <color name="app_dark_hint">#A1A5C1</color>
+
+    <color name="bg_color">#FFFFFF</color>
+    <color name="colorPrimary">#128c7e</color>
+    <color name="colorPrimaryDark">#128779</color>
+    <color name="colorAccent">#128c7e</color>
+    <color name="colorAccent_blue">#128c7e</color>
+    <color name="textColorUnselected">#D4D4D4</color>
+    <color name="timestamp">#858585</color>
+
+    <color name="disable_color">#CCCC</color>
+    <color name="red">#F80D0D</color>
 </resources>

@@ -10,10 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RenterAndroidApp">
         <activity
+            android:name=".TourFullActivity"
+            android:exported="false" />
+        <activity
             android:name=".booking.BookingReview"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing"
-            />
+            android:windowSoftInputMode="adjustNothing" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -35,6 +37,12 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".FullScreenProduct"
+            android:exported="true" />
+        <activity
+            android:name=".chat.ChatActivity"
+            android:exported="true" />
+        <activity
+            android:name=".chat.ChatMainActivity"
             android:exported="true" />
         <activity
             android:name=".dashboard.HomePage"

@@ -1,8 +1,11 @@
 package com.example.renterandroidapp.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.renterandroidapp.R
+import com.example.renterandroidapp.chat.ChatActivity
+import com.example.renterandroidapp.chat.ChatMainActivity
 import com.example.renterandroidapp.dashboard.fragments.FavouriteFragment
 import com.example.renterandroidapp.dashboard.fragments.HomeFragments
 import com.example.renterandroidapp.dashboard.fragments.ProfileFragment
@@ -37,6 +40,10 @@ class HomePage : AppCompatActivity() {
                         ProfileFragment()).commit()
                     true
                 }
+                R.id.chat -> {
+                    startActivity(Intent(this@HomePage, ChatMainActivity::class.java))
+                    true
+                }
                 else -> {
 
                     false
@@ -46,6 +53,10 @@ class HomePage : AppCompatActivity() {
 
 
     }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+finishAffinity()    }
 
 
 }

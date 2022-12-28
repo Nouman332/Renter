@@ -14,4 +14,12 @@
         android:enabled="true"
         android:icon="@drawable/ic_account_circle"
         android:title="Profile"/>
+
+    <item
+        android:id="@+id/chat"
+        android:enabled="true"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat"
+
+        />
 </menu>
